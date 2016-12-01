@@ -1,0 +1,35 @@
+{
+  "name": "jkpug",
+  "version": "0.1.0",
+  "description": "Pick Up Game bot for Jedi Knight (Academy and Outcast) with Discord and IRC frontends",
+  "main": "jkpug.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node jkpug.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Razish/node-jkpug.git"
+  },
+  "keywords": [
+    "jedi",
+    "knight",
+    "academy",
+    "outcast",
+    "pug",
+    "server",
+    "discord",
+    "irc",
+    "bot"
+  ],
+  "author": "Raz0r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Razish/node-jkpug/issues"
+  },
+  "homepage": "https://github.com/Razish/node-jkpug#readme",
+  "dependencies": {
+    "discord.io": "^2.3.0",
+    "irc": "^0.5.2"
+  }
+}

@@ -1,0 +1,45 @@
+{
+	"discord": {
+		"secret": "blahblahblah",
+		"appID": "blahblahblah",
+		"token": "blahblahblah"
+	},
+	"irc": {
+		"servers": [
+			{
+				"address": "irc.arloria.net",
+				"port": 6697,
+				"ssl": true,
+				"channels": [ "#jkpug" ],
+				"nick": "jkpug"
+			}
+		]
+	},
+	"games": {
+		"tffa": {
+			"description": "Jedi Academy 1.01 base: Team FFA",
+			"aliases": [ "tdm", "team" ],
+			"threshold": 6,
+			"protocol": 26,
+			"g_gametype": 6,
+			"require_empty": true,
+			"fs_game": ""
+		},
+		"ctf": {
+			"description": "Jedi Academy 1.01 base: CTF",
+			"threshold": 6,
+			"protocol": 26,
+			"g_gametype": 8,
+			"require_empty": true,
+			"fs_game": ""
+		}
+	},
+	"servers": {
+		"*Jedi*": {
+			"ip": "127.0.0.1",
+			"port": 29070,
+			"password": "secret",
+			"gametypes": [ "tffa", "ctf" ]
+		}
+	}
+}
