@@ -67,7 +67,12 @@ module.exports.run = function() {
 			let toks = message.split( ' ' );
 			if ( toks[0] === '!add' ) {
 				if ( toks.length == 1 ) {
-
+					client.sendMessage({
+							to: channelID,
+							message: user + ': Please specify a gametype\n'
+								+ 'try: ' + Object.keys( jkpug.games ).join( ', ' ),
+						});
+						return;
 				}
 				let toAdd = toks.slice( 1 );
 				let response = '';
