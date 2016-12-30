@@ -1,6 +1,6 @@
 {
   "name": "jkpug",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pick Up Game bot for Jedi Knight (Academy and Outcast) with Discord and IRC frontends",
   "main": "jkpug.js",
   "scripts": {
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/Razish/node-jkpug#readme",
   "dependencies": {
+    "colors": "^1.1.2",
     "discord.io": "^2.3.0",
     "irc": "^0.5.2"
   }

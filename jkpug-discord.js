@@ -9,6 +9,7 @@
 // third party packages
 const discord = require( 'discord.io' );
 const jkutils = require( 'jkutils' );
+const colors = require( 'colors' );
 
 // local modules
 const jkpug = require( './jkpug' );
@@ -28,13 +29,17 @@ module.exports.run = function() {
 		( err, code ) => {
 			if ( code === 1001 ) {
 				// cloudflare websocket update
-				console.log( 'reconnecting after cloudfare websocket update' );
-				setTimeout( client.connect, 10000 );
+				console.log( colors.yellow( 'reconnecting after cloudfare websocket update' ) );
+			}
+			// Error: unexpected server response (520)
+			else if ( /^Error: (.+) \([0-9]{1,4}\)$/.test( code ) ) {
+				// unexpected server response
+				console.log( colors.yellow( `reconnecting after error: ${code}` ) );
 			}
 			else {
-				console.log( 'unhandled error code: ' + code );
-				console.log( 'msg: ' + err );
+				console.log( colors.red( `unhandled error: ${err}, ${code}` ) );
 			}
+			client.disconnect();
 			setTimeout( client.connect, 10000 );
 		}
 	);
@@ -122,7 +127,7 @@ module.exports.run = function() {
 						break;
 					}
 					else {
-						response += gametype + ' has ' + count + '/' + game.threshold + ' players queued\n';
+						response += `${gametype} has ${count}/${game.threshold} players queued\n`;
 					}
 				}
 				if ( response ) {
@@ -137,7 +142,7 @@ module.exports.run = function() {
 				let toRemove = (toks.length > 1)
 					? toks.slice( 1 )
 					: Object.keys( jkpug.games );
-				let response = 'Removing you from ' + toRemove.join( ', ' ) + '\n';
+				let response = `Removing you from ${toRemove.join( ', ' )}\n`;
 				for ( let gametype of toRemove ) {
 					let game = jkpug.games[gametype];
 
@@ -145,8 +150,7 @@ module.exports.run = function() {
 					if ( !game ) {
 						client.sendMessage({
 							to: channelID,
-							message: user + ': no such gametype ' + gametype + ' :(\n'
-								+ 'try: ' + Object.keys( jkpug.games ).join( ', ' ),
+							message: `${user}: no such gametype ${gametype} :(\ntry: ${Object.keys( jkpug.games ).join( ', ' )}`,
 						});
 						continue;
 					}
@@ -160,8 +164,7 @@ module.exports.run = function() {
 						continue;
 					}
 					delete game.added[userID];
-					response += '* Removed from ' + gametype + ' (now ' + Object.keys( game.added ).length + '/'
-						+ game.threshold + ')\n'
+					response += `* Removed from ${gametype} (now ${Object.keys( game.added ).length}/${game.threshold})\n`;
 				}
 				return client.sendMessage({
 					to: channelID,
