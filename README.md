@@ -1,5 +1,5 @@
 # node-jkpug
-A pick Up Game bot for Jedi Knight (Academy and Outcast) with Discord and IRC frontends. 
+A Pick Up Game bot for Jedi Knight (Academy and Outcast) with Discord and IRC frontends. 
 
 ## Commands
 ###!servers (gametype)
